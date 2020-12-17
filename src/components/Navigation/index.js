@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import * as ROUTES from "../../constants/routes";
 
-const Navigation = () => (
+const NavigationAuth = () => (
     <div>
         <ul>
             <li>
@@ -21,7 +20,11 @@ const Navigation = () => (
             <li>
                 <Link to={ROUTES.ADMIN}>Admin</Link>
             </li>
+            <li>
+                <Link to={ROUTES.SIGN_UP}>Sign up</Link>
+            </li>
+           
         </ul>
     </div>
     );
-export default Navigation;
+export default NavigationAuth;
