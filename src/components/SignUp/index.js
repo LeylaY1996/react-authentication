@@ -3,11 +3,12 @@ import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import * as ROUTES from '../../constants/routes';
 import { withFirebase } from '../Firebase';
+import FirebaseContext from '../Firebase';
 
 const SignUpPage = () => (
     <div>
         <h1>SignUp</h1>
-       {/*  <FirebaseContext.Consumer>
+        {/* <FirebaseContext.Consumer>
             {firebase => <SignUpForm firebase={firebase}/>}
         </FirebaseContext.Consumer> */}
 
@@ -30,12 +31,13 @@ class SignUpFormBase extends Component {
     }
 
     onSubmit = event => {
+        console.log(this.state);
         const { username, email, passwordOne } = this.state;
 
         this.props.firebase.doCreateUserWithEmailAndPassword(email,passwordOne)
         .then(authUser => {
             this.setState({ ...INITIAL_STATE});
-            this.props.history.push(ROUTES.HOME)
+            // this.props.history.push(ROUTES.HOME)
         })
         .catch(error => {
             this.setState({error});
@@ -46,6 +48,7 @@ class SignUpFormBase extends Component {
     }
 
     onChange = event => {
+        console.log("Selam")
         this.setState({ [event.target.name]: event.target.value });
     };
 
@@ -54,11 +57,12 @@ class SignUpFormBase extends Component {
             username,
             email,
             passwordOne,
-            passwordTwo,error
+            passwordTwo,
+            error
         } = this.state;
 
         const isInvalid =
-            passwordOne !== passwordTwo ||
+          
             passwordOne === '' ||
             email === '' ||
             username === '';
@@ -89,7 +93,7 @@ class SignUpFormBase extends Component {
                 <input name="PasswordTwo"
                        value={passwordTwo}
                        onChange = {this.onChange}
-                       type="password"
+                       type="text"
                        placeholder="Confirm Password"
                 />
 

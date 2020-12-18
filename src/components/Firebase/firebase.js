@@ -19,32 +19,14 @@ const firebaseConfig = {
 
       /* Auth API */
       doCreateUserWithEmailAndPassword = (email,password) => 
-        this.auth.createUserWithEmailAndPassword(email,password)
-            .catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            if (errorCode === 'auth/weak-password') {
-              alert('The password is too weak.');
-            } else {
-              alert(errorMessage);
-            }
-            console.log(error);
-          });
+         this.auth.createUserWithEmailAndPassword(email,password)
+            
+      
 
         doSignInWithEmailAndPassword = (email,password) => 
-          this.auth.signInWithEmailAndPassword(email,password)
-          .catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            if (errorCode === 'auth/wrong-password') {
-              alert('Wrong password.');
-            } else {
-              alert(errorMessage);
-            }
-            console.log(error);
-          });
+           this.auth.signInWithEmailAndPassword(email,password)
+         
+        
           
         doSignOut = () => this.auth.signOut();
 
