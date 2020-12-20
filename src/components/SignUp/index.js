@@ -20,7 +20,7 @@ const INITIAL_STATE = {
     username: '',
     email: '',
     passwordOne: '',
-    passwordTwo: '',
+    confirmPassword: '',
     error: null
 }
 class SignUpFormBase extends Component {
@@ -48,7 +48,7 @@ class SignUpFormBase extends Component {
     }
 
     onChange = event => {
-        console.log("Selam")
+        console.log("Selam",event)
         this.setState({ [event.target.name]: event.target.value });
     };
 
@@ -57,12 +57,12 @@ class SignUpFormBase extends Component {
             username,
             email,
             passwordOne,
-            passwordTwo,
+            confirmPassword,
             error
         } = this.state;
 
         const isInvalid =
-          
+            passwordOne !== confirmPassword ||
             passwordOne === '' ||
             email === '' ||
             username === '';
@@ -83,6 +83,7 @@ class SignUpFormBase extends Component {
                        placeholder="Email Adress"
                 />
 
+                
                 <input name="passwordOne"
                        value={passwordOne}
                        onChange = {this.onChange}
@@ -90,12 +91,13 @@ class SignUpFormBase extends Component {
                        placeholder="Password"
                 />
 
-                <input name="PasswordTwo"
-                       value={passwordTwo}
-                       onChange = {this.onChange}
-                       type="text"
-                       placeholder="Confirm Password"
+                <input name="confirmPassword"
+                    value={confirmPassword}
+                    onChange = {this.onChange}
+                    type="password"
+                    placeholder="Confirm Password"
                 />
+                
 
                 <button type="submit" disabled={isInvalid}>Sign Up</button>
 

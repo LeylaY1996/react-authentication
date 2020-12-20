@@ -35,11 +35,9 @@ class App extends Component {
        
           <Navigation authUser={this.state.authUser} />
           <Switch>
-            <Route path="/signin">
-              <SignInForm />
+            <Route path="/signin" component={SignInForm}>
             </Route>
-            <Route path="/signup">
-              <SignUpPage />
+            <Route path="/signup" component={SignUpPage}>
             </Route>
           </Switch>
         </div>
