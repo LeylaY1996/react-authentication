@@ -1,52 +1,42 @@
-import React , { Component } from "react";
-import { BrowserRouter as Router, Route ,Switch} from "react-router-dom";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navigation from "../Navigation";
 import { withFirebase } from '../Firebase';
-import { SignInForm } from "../SignIn";
-import  { AuthUserContext } from "../Session";
-import  SignUpPage  from "../SignUp";
+import SignUpPage from "../SignUp";
+import LandingPage from '../Landing';
+import SignInPage from '../SignIn';
+import PasswordForgetPage from '../PasswordForget';
+import HomePage from '../Home';
+import AccountPage from '../Account';
+import AdminPage from '../Admin';
+import * as ROUTES from '../../constants/routes';
+import { withAuthentication } from "../Session";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+const App = () => (
+  <Router>
+    <div>
+      <Navigation />
+      <hr />
 
-    this.state = {
-      authUser: null,
-    };
-  }
-
-  componentDidMount() {
-    console.log("ilk burada");
-    this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
-      authUser 
-      ? this.setState({ authUser })
-      : this.setState({ authUser: null })
-      console.log("authUser",this.state.authUser);
-    });
-    console.log(this.state.authUser);
-  }
-
-  componentWillUnmount() {
-    this.listener();
-  }
-
-  render() {
-    return (
-      <AuthUserContext.Provider value={this.state.authUser}>
-        <Router>
-          <div>
-            <Navigation />
-            <Switch>
+      <Route exact path={ROUTES.LANDING} component={LandingPage} />
+      <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+      <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+      <Route
+        path={ROUTES.PASSWORD_FORGET}
+        component={PasswordForgetPage}
+      />
+      <Route path={ROUTES.HOME} component={HomePage} />
+      <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+      <Route path={ROUTES.ADMIN} component={AdminPage} />
+      {/* <Switch>
               <Route path="/signin" component={SignInForm}>
               </Route>
               <Route path="/signup" component={SignUpPage}>
               </Route>
-            </Switch>
-          </div>
-        </Router>
-      </AuthUserContext.Provider>
-    )
-  }
-}
+            </Switch> */}
+    </div>
+  </Router>
 
-export default withFirebase(App);
+)
+
+export default withAuthentication(App);
