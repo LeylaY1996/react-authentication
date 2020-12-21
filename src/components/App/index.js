@@ -1,7 +1,6 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from "../Navigation";
-import { withFirebase } from '../Firebase';
 import SignUpPage from "../SignUp";
 import LandingPage from '../Landing';
 import SignInPage from '../SignIn';
@@ -28,12 +27,6 @@ const App = () => (
       <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
-      {/* <Switch>
-              <Route path="/signin" component={SignInForm}>
-              </Route>
-              <Route path="/signup" component={SignUpPage}>
-              </Route>
-            </Switch> */}
     </div>
   </Router>
 
