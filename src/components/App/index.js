@@ -8,7 +8,7 @@ import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
-import * as ROUTES from '../../constants/routes';
+// import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from "../Session";
 
 const App = () => (
@@ -17,16 +17,16 @@ const App = () => (
       <Navigation />
       <hr />
 
-      <Route exact path={ROUTES.LANDING} component={LandingPage} />
-      <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-      <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+      <Route exact path="/" component={LandingPage} /> 
+      <Route path="/signup" component={SignUpPage} />
+      <Route path="/signin" component={SignInPage} />
       <Route
-        path={ROUTES.PASSWORD_FORGET}
+        path="/pw-forget"
         component={PasswordForgetPage}
       />
-      <Route path={ROUTES.HOME} component={HomePage} />
-      <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-      <Route path={ROUTES.ADMIN} component={AdminPage} />
+      <Route path="/home" component={HomePage} />
+      <Route path="/account" component={AccountPage} />
+      <Route path="/admin" component={AdminPage} />
     </div>
   </Router>
 
