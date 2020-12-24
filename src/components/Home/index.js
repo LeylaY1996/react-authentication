@@ -1,14 +1,9 @@
-import React, {Component} from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
-import * as ROUTES from '../../constants/routes';
-import { withFirebase } from '../Firebase';
-import FirebaseContext from '../Firebase';
+import React from 'react';
 
-const Home = () => (
+const HomePage = () => (
     <div>
-        <h1>SignUp</h1>
+        <h1>Home</h1>
     </div>
 );
 
-export default Home;
+export default HomePage;
