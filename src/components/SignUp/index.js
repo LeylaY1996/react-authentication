@@ -36,6 +36,16 @@ class SignUpFormBase extends Component {
 
         this.props.firebase.doCreateUserWithEmailAndPassword(email,passwordOne)
         .then(authUser => {
+            //veritabanına kaydetme işlemi olacak
+            /*  (uid) sağlayarak Firebase sınıfından önceden oluşturulmuş referansı kullanır.
+             Daha sonra set()yöntem, "kullanıcılar / uid" için tahsis edilen bu varlık için veri sağlamak için kullanılabilir.  */
+            return this.props.firebase  
+                .user(authUser.user.uid)
+                .set({
+                    username,email
+                });
+        })
+        .then(authUser => {
             this.setState({ ...INITIAL_STATE});
             this.props.history.push(ROUTES.HOME)
         })
