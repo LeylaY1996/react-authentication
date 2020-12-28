@@ -25,8 +25,6 @@ const SignInPage = () => (
   <div>
     <h1>SignIn</h1>
     <SignInForm />
-    <PasswordForgetLink/>
-    <SignUpLink />
   </div>
 );
  
@@ -79,30 +77,74 @@ class SignInFormBase extends Component {
 
     return (
       <Grid container component="main" className={classes.root}>
-        <CssBaseline/>
-        <Grid item xs={false} sm={4} md={7} className={classes.image}/>
-        <form onSubmit={this.onSubmit}>
-          <input
-            name="email"
-            value={email}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Email Address"
-          />
-          <input
-            name="password"
-            value={password}
-            onChange={this.onChange}
-            type="password"
-            placeholder="Password"
-          />
-          <button disabled={isInvalid} type="submit">
-            Sign In
-          </button>
-  
-          {error && <p>{error.message}</p>}
-        </form>
+      <CssBaseline />
+      <Grid item xs={false} sm={4} md={7} className={classes.image} />
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+
+          <form className={classes.form} onSubmit={this.onSubmit}>
+            <input
+            variant="outlined"
+              name="email"
+              margin="normal"
+              required
+              fullWidth
+              value={email}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Email Address"
+              autoFocus
+            />
+            <input
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              value={password}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Password"
+              autoComplete="current-password"
+            />
+            <Button
+             disabled={isInvalid}
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign In
+            </Button>
+
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                <PasswordForgetLink/>
+
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="#" variant="body2">
+                <SignUpLink />
+
+                </Link>
+              </Grid>
+            </Grid>
+    
+            {error && <p>{error.message}</p>}
+          </form>
+          </div>
       </Grid>
+    </Grid>
+    
     );
   }
 }
