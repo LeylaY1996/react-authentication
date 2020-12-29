@@ -26,7 +26,7 @@ const firebaseConfig = {
       
 
         doSignInWithEmailAndPassword = (email,password) => 
-           this.auth.signInWithEmailAndPassword(email,password)
+            this.auth.signInWithEmailAndPassword(email,password)
          
         
           
