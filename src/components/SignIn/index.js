@@ -11,11 +11,20 @@ import Grid from '@material-ui/core/Grid';
 import { PasswordForgetLink } from '../PasswordForget';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
+
+const signStyle = {
+  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  borderRadius: 3,
+  border: 0,
+  color: 'white',
+  height: 48,
+  padding: '0 30px',
+  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+};
 
 const SignInPage = () => (
   <div>
-    <h1>SignIn</h1>
+    <h1 style={signStyle}>SignIn</h1>
     <SignInForm />
     {/* <SignUpLink /> */}
   </div>
@@ -27,12 +36,6 @@ const INITIAL_STATE = {
   error: null,
 }; 
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    display: 'flex',
-    backgroundColor : 'blue'
-  }
-}))
 class SignInFormBase extends Component {
   constructor(props) {
     super(props);
@@ -62,27 +65,38 @@ class SignInFormBase extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  
   render() {
     
     const {email,password,error } = this.state;
   
     const isInvalid = password === '' || email === '';
 
-    const classes = useStyles();
+    // We can use inline-style
+    const style = {
+      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+      borderRadius: 3,
+      border: 0,
+      color: 'white',
+      height: 48,
+      padding: '0 30px',
+      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    };
+
+    // const classes = useStyles();
     return (
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" >
 
         <CssBaseline/>
 
-        <div className={classes.paper}>
+        <div>
 
           <form onSubmit={this.onSubmit}>
             <TextField variant="outlined" margin="normal" name="email" value={email} fullWidth onChange={this.onChange} label="Email Address"/>
 
             <TextField variant="outlined" margin="normal" name="password" value={password} fullWidth onChange={this.onChange} label="Password"/>
-            
           
-            <Button disabled={isInvalid} type="submit" variant="contained" color="primary">
+            <Button type="submit"  style={style} variant="contained">
               Submit
             </Button>
 
