@@ -21,7 +21,7 @@ class AdminPage extends Component {
 
         //veritabanında kullanıcıları çekebiliriz.
 
-        console.log(this.props.firebase.users())
+        console.log("hello",this.props.firebase.users())
         this.props.firebase.users().on('value', snapshot => {
 
             const usersObject = snapshot.val();
