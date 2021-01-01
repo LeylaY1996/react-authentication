@@ -22,20 +22,8 @@ const signStyle = {
   textAlign: 'center',
 };
 
-const iconStyle = {
-  marginLeft: '450px',
-};
-
 const SignInPage = () => (
   <div>
-    <Avatar style={{ 
-      height: '200px', 
-      width: '200px', 
-      lineHeight: '10px', 
-      position: 'center',
-  }} >
-      <LockOutlinedIcon />
-    </Avatar>
     <h1 style={signStyle}>
       SignIn
     </h1>
@@ -115,12 +103,12 @@ class SignInFormBase extends Component {
               Submit
             </Button>
 
-            <Grid container>
+            <Grid container >
               <Grid item xs>
                 <PasswordForgetLink></PasswordForgetLink>
 
               </Grid>
-              <Grid item>
+              <Grid item >
                 <SignUpLink></SignUpLink>
               </Grid>
             </Grid>

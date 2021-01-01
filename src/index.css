@@ -15,11 +15,3 @@ code {
 .submit-button {
   padding: 20px;
 }
-
-.tes {
-  color: black;
-  background-color: black;
-}
-.Button:disabled { /* Increase the specificity */
-  color: white;
-}

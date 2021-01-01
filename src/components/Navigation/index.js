@@ -4,7 +4,12 @@ import * as ROUTES from "../../constants/routes";
 import SignOutButton from '../SignOut'; 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AuthUserContext } from '../Session';
-
+const signStyle = {
+    color: 'pink',
+    fontSize:'25px',
+    fontWeight: "bolder"
+  };
+  
 const Navigation = ({ authUser }) => (
 <div>
     <AuthUserContext.Consumer>
@@ -39,14 +44,14 @@ const NavigationAuth = () => (
 
 const NavigationNonAuth = () => (
 <ul>
-    <li>
-        <Link to={ROUTES.SIGN_IN}>Sign in</Link>
+    <li  style={signStyle}>
+        <Link to={ROUTES.SIGN_IN}  style={signStyle}>Sign in</Link>
     </li>
-    <li>
-        <Link to={ROUTES.SIGN_UP}>Sign up</Link>
+    <li  style={signStyle}>
+        <Link to={ROUTES.SIGN_UP} style={signStyle}>Sign up</Link>
     </li>
-    <li>
-        <Link to={ROUTES.LANDING}>Landing</Link>
+    <li  style={signStyle}>
+        <Link to={ROUTES.LANDING} style={signStyle}>Landing</Link>
     </li>
 </ul>
 
