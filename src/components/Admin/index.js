@@ -15,11 +15,13 @@ class AdminPage extends Component {
     }
 
     componentDidMount() {
+    console.log("users",this.state.users);
+
         this.setState({loading: true});
 
         //veritabanında kullanıcıları çekebiliriz.
 
-        console.log( this.props.firebase.users())
+        console.log(this.props.firebase.users())
         this.props.firebase.users().on('value', snapshot => {
 
             const usersObject = snapshot.val();
@@ -55,6 +57,7 @@ class AdminPage extends Component {
 
 const UserList = ({users}) => (
     <ul>
+        <p>User: {users}</p>
         {users.map(user => (
             <li key={user.uid}>
                 <span>

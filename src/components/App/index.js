@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from "../Navigation";
 import SignUpPage from "../SignUp";
-import LandingPage from '../Landing';
 import SignInPage from '../SignIn';
 import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
@@ -17,7 +16,6 @@ const App = () => (
       <Navigation />
       <hr />
 
-      <Route exact path="/" component={LandingPage} /> 
       <Route path="/signup" component={SignUpPage} />
       <Route path="/signin" component={SignInPage} />
       <Route

@@ -17,6 +17,7 @@ const firebaseConfig = {
 
           this.auth = app.auth();
           this.db = app.database();
+          console.log("This",this.db.ref(`users`))
       }
 
       /* Auth API */
@@ -38,7 +39,6 @@ const firebaseConfig = {
 
         /* User API */
         user = uid => this.db.ref(`users/${uid}`);
-
         users = () => this.db.ref(`users`);
     }
 

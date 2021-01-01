@@ -32,9 +32,6 @@ const Navigation = ({ authUser }) => (
 const NavigationAuth = () => (
     <div>
         <ul>
-            {/* <li style={signStyle}>
-                <Link  style={signStyle} to={ROUTES.LANDING}>Landing</Link>
-            </li> */}
             <li style={signStyle}>
                 <Link  style={signStyle} to={ROUTES.HOME}>Home</Link>
             </li>
@@ -59,9 +56,6 @@ const NavigationNonAuth = () => (
     <li  style={signStyle}>
         <Link to={ROUTES.SIGN_UP} style={signStyle}>Sign up</Link>
     </li>
-  {/*   <li  style={signStyle}>
-        <Link to={ROUTES.LANDING} style={signStyle}>Landing</Link>
-    </li> */}
 </ul>
 
 
