@@ -4,10 +4,25 @@ import { compose } from 'recompose';
 import * as ROUTES from '../../constants/routes';
 import { withFirebase } from '../Firebase';
 import FirebaseContext from '../Firebase';
+import Button from '@material-ui/core/Button';
+import { CssBaseline, TextField } from '@material-ui/core';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
+import Grid from '@material-ui/core/Grid';
+import { PasswordForgetLink } from '../PasswordForget';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+import Avatar from '@material-ui/core/Avatar';
+
+
+const signStyle = {
+    color: 'pink',
+    padding: '0 30px',
+    textAlign: 'center',
+  };
 const SignUpPage = () => (
     <div>
-        <h1>SignUp</h1>
+        <h1 style={signStyle}>SignUp</h1>
 {/*         <FirebaseContext.Consumer>
             {firebase => <SignUpForm firebase={firebase}/>}
         </FirebaseContext.Consumer> */}
@@ -23,6 +38,8 @@ const INITIAL_STATE = {
     confirmPassword: '',
     error: null
 }
+
+
 class SignUpFormBase extends Component {
     constructor(props) {
         super(props);
@@ -77,8 +94,53 @@ class SignUpFormBase extends Component {
             email === '' ||
             username === '';
 
+            const style = {
+                background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+                borderRadius: 3,
+                border: 0,
+                color: 'white',
+                height: 48,
+                padding: '0 30px',
+                boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+              };
         return (
-            <form onSubmit = {this.onSubmit}>
+            <Container component="main" maxWidth="xs" >
+
+        <CssBaseline />
+
+        <div>
+
+          <form onSubmit={this.onSubmit}>
+            <TextField variant="outlined" margin="normal" name="username" value={username} fullWidth onChange={this.onChange} label="Username" />
+
+            <TextField variant="outlined" margin="normal" name="email" value={email} fullWidth onChange={this.onChange} label="Email" />
+
+            <TextField variant="outlined" margin="normal" name="passwordOne" value={passwordOne} fullWidth onChange={this.onChange} label="Password" />
+
+            <TextField variant="outlined" margin="normal" name="confirmPassword" value={confirmPassword} fullWidth onChange={this.onChange} label="Confirm Password" />
+
+            <Button type="submit" disabled={isInvalid} style={style} variant="contained">
+              Sign Up
+            </Button>
+           
+            <Grid container >
+              <Grid item xs>
+                <PasswordForgetLink></PasswordForgetLink>
+
+              </Grid>
+              <Grid item >
+                <SignUpLink></SignUpLink>
+              </Grid>
+            </Grid>
+
+
+            <Box mt={8}>
+              {error && <p>{error.message}</p>}
+            </Box>
+          </form>
+        </div>
+      </Container>
+            /* <form onSubmit = {this.onSubmit}>
                 <input name="username"
                        value={username}
                        onChange = {this.onChange}
@@ -112,7 +174,7 @@ class SignUpFormBase extends Component {
                 <button type="submit" disabled={isInvalid}>Sign Up</button>
 
                 {error && <p>{error.message}</p>}
-            </form>
+            </form> */
         );
     }
 }

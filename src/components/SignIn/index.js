@@ -100,7 +100,7 @@ class SignInFormBase extends Component {
             <TextField variant="outlined" margin="normal" name="password" value={password} fullWidth onChange={this.onChange} label="Password" />
 
             <Button type="submit" style={style} variant="contained">
-              Submit
+              Sign In
             </Button>
 
             <Grid container >

@@ -9,7 +9,16 @@ const signStyle = {
     fontSize:'25px',
     fontWeight: "bolder"
   };
-  
+
+  const style = {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  };
 const Navigation = ({ authUser }) => (
 <div>
     <AuthUserContext.Consumer>
@@ -23,20 +32,20 @@ const Navigation = ({ authUser }) => (
 const NavigationAuth = () => (
     <div>
         <ul>
-            <li>
-                <Link to={ROUTES.LANDING}>Landing</Link>
+            {/* <li style={signStyle}>
+                <Link  style={signStyle} to={ROUTES.LANDING}>Landing</Link>
+            </li> */}
+            <li style={signStyle}>
+                <Link  style={signStyle} to={ROUTES.HOME}>Home</Link>
             </li>
-            <li>
-                <Link to={ROUTES.HOME}>Home</Link>
+            <li  style={signStyle}>
+                <Link  style={signStyle} to={ROUTES.ACCOUNT}>Account</Link>
             </li>
-            <li>
-                <Link to={ROUTES.ACCOUNT}>Account</Link>
+            <li  style={signStyle}>
+                <Link  style={signStyle} to={ROUTES.ADMIN}>Admin</Link>
             </li>
-            <li>
-                <Link to={ROUTES.ADMIN}>Admin</Link>
-            </li>
-            <li>
-                <SignOutButton/>
+            <li  style={signStyle}>
+                <SignOutButton />
             </li>
         </ul>
     </div>
@@ -50,9 +59,9 @@ const NavigationNonAuth = () => (
     <li  style={signStyle}>
         <Link to={ROUTES.SIGN_UP} style={signStyle}>Sign up</Link>
     </li>
-    <li  style={signStyle}>
+  {/*   <li  style={signStyle}>
         <Link to={ROUTES.LANDING} style={signStyle}>Landing</Link>
-    </li>
+    </li> */}
 </ul>
 
 
