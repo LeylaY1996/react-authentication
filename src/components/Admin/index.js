@@ -1,77 +1,78 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-import * as ROLES from '../../constants/roles';
 import { withFirebase } from '../Firebase';
-import { withAuthorization } from '../Session';
+import * as ROUTES from '../../constants/routes';
 
-class AdminPage extends Component {
-    constructor(props) {
-        super(props);
+class UserList extends Component {
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            loading: false,
-            users: []
-        };
-    }
+    this.state = {
+      loading: false,
+      users: [],
+    };
+  }
 
-    componentDidMount() {
-    console.log("users",this.state.users);
+  componentDidMount() {
+    this.setState({ loading: true });
 
-        this.setState({loading: true});
+    this.props.firebase.users().on('value', snapshot => {
+        console.log("users",this.props.firebase.users())
 
-        //veritabanında kullanıcıları çekebiliriz.
+      const usersObject = snapshot.val();
 
-        console.log("hello",this.props.firebase.users())
-        this.props.firebase.users().on('value', snapshot => {
+      const usersList = Object.keys(usersObject).map(key => ({
+        ...usersObject[key],
+        uid: key,
+      }));
 
-            const usersObject = snapshot.val();
+      this.setState({
+        users: usersList,
+        loading: false,
+      });
+    });
+  }
 
-            const usersList = Object.keys(usersObject).map(key => ({
-                ...usersObject[key],
-                uid: key
-            }))
-            this.setState({
-                users: usersList,
-                loading:false,
-            })
-        })
-    }
+  componentWillUnmount() {
+    this.props.firebase.users().off();
+  }
 
-    componentWillUnmount() {
-        /*  bellek kullanımını meşgul etmemek için users verilerin ggelmesini kapatıyoruz */
-        this.props.firebase.users().off();
-    }
-    render() { 
-        const { users, loading } = this.state;
-        return (
+  render() {
+    const { users, loading } = this.state;
 
-            <div>
-                <h1>Admin</h1>
-                {loading && <div>Loading...</div>}
-                <UserList users = { users }/>
-            </div>
-        )
-    }
-
+    return (
+      <div>
+        <h2>Users</h2>
+        {loading && <div>Loading ...</div>}
+        <ul>
+          {users.map(user => (
+            <li key={user.uid}>
+              <span>
+                <strong>ID:</strong> {user.uid}
+              </span>
+              <span>
+                <strong>E-Mail:</strong> {user.email}
+              </span>
+              <span>
+                <strong>Username:</strong> {user.username}
+              </span>
+              <span>
+                <Link
+                  to={{
+                    pathname: `${ROUTES.ADMIN}/${user.uid}`,
+                    state: { user },
+                  }}
+                >
+                  Details
+                </Link>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 }
 
-const UserList = ({users}) => (
-    <ul>
-        <p>User: {users}</p>
-        {users.map(user => (
-            <li key={user.uid}>
-                <span>
-                    <strong>ID:</strong> { user.id }
-                </span>
-                <span>
-                    <strong>EMail:</strong> { user.email }
-                </span>
-                <span>
-                    <strong>Username:</strong> { user.username }
-                </span>
-            </li>
-        ))}
-    </ul>
-)
-
-export default withFirebase(AdminPage);
+export default withFirebase(UserList);

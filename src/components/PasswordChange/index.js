@@ -56,48 +56,24 @@ class PasswordChangeForm extends Component {
             boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
           };
         return (
-            /* <form onSubmit={this.onSubmit}>
-                <input 
-                    name="password"
-                    value={password}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="New Password"/>
 
-                <input 
-                    name="confirmPassword"
-                    value={confirmPassword}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="Confirm New Password"
-                    />
-                <button disabled={isInvalid} type="submit">
-                    Reset My Password
-                </button>
+        <Container component="main" maxWidth="xs" >
 
-                {error && <p>{error.message}</p>}
-            </form> */
+            <CssBaseline />
+            <div>
+                <form onSubmit={this.onSubmit}>
+                    <TextField variant="outlined" margin="normal" name="password" value={password} fullWidth onChange={this.onChange} type={password} label="New Password" />
+                    <TextField variant="outlined" margin="normal" name="confirmPassword" value={confirmPassword} fullWidth onChange={this.onChange} type={password} label="Confirm Password" />
 
-
-<Container component="main" maxWidth="xs" >
-
-<CssBaseline />
-
-<div>
-
-<form onSubmit={this.onSubmit}>
-    <TextField variant="outlined" margin="normal" name="password" value={password} fullWidth onChange={this.onChange} type={password} label="New Password" />
-    <TextField variant="outlined" margin="normal" name="confirmPassword" value={confirmPassword} fullWidth onChange={this.onChange} type={password} label="Confirm Password" />
-
-    <Button type="submit" disabled={isInvalid} style={style} variant="contained">
-    Change Password
-    </Button>
-    <Box mt={8}>
-    {error && <p>{error.message}</p>}
-    </Box>
-</form>
-</div>
-</Container>
+                    <Button type="submit" disabled={isInvalid} style={style} variant="contained">
+                    Change Password
+                    </Button>
+                    <Box mt={8}>
+                    {error && <p>{error.message}</p>}
+                    </Box>
+                </form>
+            </div>
+        </Container>
         );
     }
 }
